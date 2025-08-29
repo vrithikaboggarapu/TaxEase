@@ -176,4 +176,101 @@
                 
           </section>
           <hr style="width: 95%; display: flex; margin: auto; margin-top:50px; height: 8px;border-radius: 8px; background: linear-gradient(to right,#d56666,#1167b1,black);">
-    
+    <!--CONTACT SECTION-->
+
+    <section class="contact" id="contact">
+        <div class="container">
+          <h1>Let's <strong>Talk</strong></h1>
+          <p>
+            Thank you for your message! I am dedicated to addressing your
+            inquiry personally. Kindly allow 24-48 hours for my response. Your
+            understanding is greatly appreciated.
+          </p>
+          <div>
+            <form
+              id="contact-form"
+              aria-label="Contact Form"
+              action="https://api.web3forms.com/submit"
+              method="POST"
+            >
+              <input
+                type="hidden"
+                name="access_key"
+                value="0372130d-8c93-403c-a40b-b4cb811d5253"
+              />
+              <div class="form-row">
+                <input
+                  type="text"
+                  name="name"
+                  class="form-input"
+                  placeholder="Your Name"
+                  required
+                  aria-label="Your name"
+                  autocomplete="off"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  id="emailsss"
+                  class="form-input"
+                  placeholder="Your email"
+                  required
+                  aria-label="Your email"
+                  autocomplete="off"
+                />
+              </div>
+
+              <textarea
+                rows="6"
+                name="message"
+                class="form-input"
+                placeholder="Enter your message here..."
+                required
+                style="resize: none"
+                aria-label="Your Message"
+                autocomplete="off"
+              ></textarea>
+
+              <div class="form-button">
+                <button type="submit">Submit Your Message</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="container footer-container">
+        <p>&copy; 2024 | Codes&Bytes | All rights reserved</p>
+      </div>
+    </footer>
+    <script src="{{ url_for('static', filename='js/app.js') }}"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script>
+      const form = document.getElementById('calc-form');
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const response = await fetch('/Calculate_Tax', {
+        method: 'POST',
+        body: formData
+    });
+    const data = await response.json();
+    if (data.result === 'success') {
+        const taxAmount = `<span style="font-weight: bold; color: blue;">${data.message}</span>`;
+        Swal.fire({
+            icon: 'success',
+            title: 'Tax Calculation Successful',
+            html: `${taxAmount}`
+        });
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Tax Calculation Failed',
+            text: data.message
+        });
+    }
+});
+    </script>
+  </body>
+</html>

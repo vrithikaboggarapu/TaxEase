@@ -1,0 +1,89 @@
+.Heading1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 26px;
+    text-align: center;
+    width: 65%;
+    margin: auto; 
+    padding: 20px;
+    color: white;
+    background: linear-gradient(to right,#d56666,#1167b1,black);
+    margin-top: 20px;
+    margin-bottom: 35px;
+    border-radius: 30px;
+}
+
+.Heading1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 26px;
+    text-align: center;
+    width: 65%;
+    margin: auto; 
+    padding: 20px;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 35px;
+    border-radius: 30px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .Heading1 {
+        font-size: 20px;
+        background: linear-gradient(to right,#d56666,#1167b1,black);
+        width: 90%;
+
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .Heading1 {
+        font-size: 20px;
+        width: 90%;
+        background: linear-gradient(to right,#d56666,#1167b1,black);
+    }
+}
+.Labells {
+    display: block;
+    margin-bottom:5px;
+    font-weight: bold;
+    text-align: center;
+    align-items: center;
+}
+
+.calc{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}   
+/* Form input */
+.form-input1 {
+    display: flex;
+    justify-self: center;
+    width: 50%;
+    padding: 8px;
+    margin-bottom: 25px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    text-align: center;
+}
+
+/* Submit button */
+.submit-button {
+    background-color: #1167b1;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 25px;
+  transition: all 0.5s ease-in-out;
+  font-weight: bold;
+  margin-bottom: ;
+}
+
+/* Submit button hover effect */
+.submit-button:hover {
+    background-color: #d56666;
+  color: black;
+  box-shadow: 0 14px 16px 12px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
+}

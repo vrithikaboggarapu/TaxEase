@@ -78,5 +78,34 @@
         </div>
       </section>
 
+     <!--Calculation Section-->
+     <section name="Calc" id="Calc">
+        <div class="container"></div>
+        <h1 class="Heading1">Please provide the necessary details to Calculate your Approximate Income Tax</h1>
+        <form class="calc" name="calc" id="calc-form" method="POST">
+          <label class="Labells" for="num1">Active Income</label>
+          <input class="form-input1" type="text" id="num1" name="num1" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+      
+          <label class="Labells" for="num2">Passive Income</label>
+          <input class="form-input1" type="text" id="num2" name="num2" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+      
+          <label class="Labells" for="num3">Age</label>
+          <input class="form-input1" type="text" id="num3" name="num3" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+      
+          <!-- Submit button -->
+          <button type="submit" class="submit-button">Calculate</button>
+      </form>
+      
+        {% if tax %}
+        <div>
+            <p>{{ tax }}</p>
+        </div>
+        {% endif %}
+      </div>
+      </section>
+
+
+      <hr style="width: 95%; display: flex; margin: auto; margin-bottom: 30px;margin-top: 40px; height: 8px;border-radius: 8px; background: linear-gradient(to right,#d56666,#1167b1,black);">
+
   
   

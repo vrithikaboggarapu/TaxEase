@@ -1,11 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <link rel="shortcut icon" type="x-icon" href="assets\\hover.svg" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}" />
+    <title>TaxEase| Official</title>
+  </head>
+  <body>
+    <!-------- NAVBAR --------->
+    <header>
+      <nav role="navigation" aria-label="Navigation">
+        <div class="container navbar">
+          <h1>Codes & Bytes</h1>
+
+          <ul class="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#calc">Calculate</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#Vision">Vision</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+
+          <button aria-label="Toggle Mobile Menu" class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+    <main>
+        <!--HERO SECTION -->
+        <section id="home" class="hero">
+          <div class="hero-overlay"></div>
+          <div class="container hero-content">
+            <div class="hero-text">
+              <h2 id="typed-text"></h2>
+            </div>
+  
+            <div class="hero-socials" aria-label="Social Media Links">
+              <a
+                href="https://twitter.com/bytes_code2406"
+                aria-label="Twitter Link"
+                target="_blank"
+                ><ion-icon name="logo-twitter"></ion-icon
+              ></a>
+              <a
+                href="https://github.com/Codes-Bytes"
+                aria-label="Github Link"
+                target="_blank"
+                ><ion-icon name="logo-github"></ion-icon
+              ></a>
+              <a
+              href="https://github.com/Codes-Bytes"
+              aria-label="Github Link"
+              target="_blank"
+              ><ion-icon name="logo-github"></ion-icon
+            ></a>
+            <a
+              href="https://www.linkedin.com/in/codes-bytes-5937972b6/"
+              aria-label="LinkedIn Link"
+              target="_blank"
+              ><ion-icon name="logo-linkedin"></ion-icon
+            ></a>
+          </div>
+        </div>
+      </section>
+
+     <!--Calculation Section-->
+     <section name="Calc" id="Calc">
+        <div class="container"></div>
+        <h1 class="Heading1">Please provide the necessary details to Calculate your Approximate Income Tax</h1>
+        <form class="calc" name="calc" id="calc-form" method="POST">
+          <label class="Labells" for="num1">Active Income</label>
+          <input class="form-input1" type="text" id="num1" name="num1" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+      
+          <label class="Labells" for="num2">Passive Income</label>
+          <input class="form-input1" type="text" id="num2" name="num2" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+      
+          <label class="Labells" for="num3">Age</label>
+          <input class="form-input1" type="text" id="num3" name="num3" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+      
+          <!-- Submit button -->
+          <button type="submit" class="submit-button">Calculate</button>
+      </form>
+      
+        {% if tax %}
+        <div>
+            <p>{{ tax }}</p>
+        </div>
+        {% endif %}
+      </div>
+      </section>
+
+
+      <hr style="width: 95%; display: flex; margin: auto; margin-bottom: 30px;margin-top: 40px; height: 8px;border-radius: 8px; background: linear-gradient(to right,#d56666,#1167b1,black);">
+      <!--ABOUT SECTION-->
+      <section class="about" id="about">
+        <div class="container">
+         
+          <h1>
+            <strong>WELCOME TO</strong> <br />
+            <span style="color: black; font-weight: normal">A</span
+            ><span
+              style="
+                text-transform: lowercase;
+                color: black;
+                font-weight: normal;
+              "
+              >pna</span
+            ><span class="helk">TAX</span>,<br />
+            <strong>YOUR PARTNER IN TAX PLANNING AND ESTIMATION!</strong>
+            
+          </h1>
+          
+          <div class="about-info">
+            <p>
+              <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="LOGO" width="300px" /><br />
+              Welcome to TaxEase, a premier service brought to you by Codes &
+              Bytes. At TaxEase, we are committed to providing comprehensive tax
+              planning and estimation services. Our dedicated team of experts is
+              here to assist you in understanding and optimizing your tax
+              liabilities. TaxEase offers a range of services tailored to your
+              individual needs. From calculating your income tax approximation
+              to providing insights into exemptions and deductions, we strive to
+              empower you to make informed financial decisions. Our innovative
+              approach includes taking into account various factors such as your
+              passive and active income, insurance plan details (including
+              coverage for parents), standard deduction eligibility, and any
+              pending loans, especially home loans. By leveraging our expertise
+              and cutting-edge technology, we aim to simplify the tax planning
+              process and maximize your savings. Join us at TaxEase and
+              experience the difference that informed tax planning can make in
+              your financial future!
+            </p>
+          </div>
+        </div>
+        <hr style="width: 75%; display: flex; margin: auto; margin-bottom: 20px;">
+              <br>
+              <section class="team">
+                  <div class="team-member">
+                      <h3> <br> VRITHIKA BOGGARAPU</h3>
+                      <p> <h4>TEAM LEAD,<br/> CEO & FOUNDER <br/>(CODES & BYTES) </h4> <br> Front-End and Back-End Programmer,</br> UI-UX Developer.<br> <span style="font-weight: bold;"><br>Mail ID </span><span>: vrithikaboggarapu05@gmail.com </span></p>
+                  </div>
+                  <!--<div class="team-member">
+                      <img class="Imagesss" src="./assets/Blake.jpg" alt="Team Member 2"/>
+                      <h3> <br> SRINITHA THIRUNAGIRI</h3>
+                      <p> <h4>CO-LEAD </h4> <br> Business Affairs Head,<br> Back-End Programmer.<br> <span style="font-weight: bold;"><br>Mail ID </span><span>: mokshithbalidi@gmail.com </span></p>
+                  </div>//-->
+      </section>
+
+      <hr style="width: 95%; display: flex; margin: auto; margin-bottom: 30px; height: 8px;border-radius: 8px; background: linear-gradient(to left,#d56666,#1167b1,black);">
+
+  
+        <!--Vision SECTION-->
+        <section class="Vision" id="Vision">
+            <h1><span style="text-transform: lowercase;text-transform: capitalize; font-size: 38px; color: black;">TaxEase</span><span style="font-weight: bold;font-size: 42px; font-family: 'Times New Roman', Times, serif;">TAX</span>'s<br/> <strong>VISION</strong></h1>
+             <p>Our company's vision is rooted in the evolution of tax planning methods. In the past, individuals relied on conventional tax filing methods, often missing out on potential deductions and exemptions. However, with the advancement of technology and the availability of vast data, we believe it's time for a transformative shift in tax planning. We envision a future where individuals move away from traditional tax filing methods and instead embrace dynamic, personalized tax planning solutions.
     
-</body>
+              TaxEase aims to revolutionize tax planning by providing personalized, comprehensive tax estimation services. We envision a future where individuals can easily estimate their taxes, deductions, and exemptions using our innovative platform. By leveraging technology and data analytics, we empower individuals to take control of their finances and make informed decisions.
+              
+              Our goal is to simplify the tax planning process and provide individuals with the tools and knowledge they need to optimize their tax liabilities. With TaxEase, we aim to redefine the way individuals approach tax planning, making it more accessible, personalized, and impactful.
+              </p>
+                
+          </section>
+          <hr style="width: 95%; display: flex; margin: auto; margin-top:50px; height: 8px;border-radius: 8px; background: linear-gradient(to right,#d56666,#1167b1,black);">
+    <!--CONTACT SECTION-->
+
+    <section class="contact" id="contact">
+        <div class="container">
+          <h1>Let's <strong>Talk</strong></h1>
+          <p>
+            Thank you for your message! I am dedicated to addressing your
+            inquiry personally. Kindly allow 24-48 hours for my response. Your
+            understanding is greatly appreciated.
+          </p>
+          <div>
+            <form
+              id="contact-form"
+              aria-label="Contact Form"
+              action="https://api.web3forms.com/submit"
+              method="POST"
+            >
+              <input
+                type="hidden"
+                name="access_key"
+                value="0372130d-8c93-403c-a40b-b4cb811d5253"
+              />
+              <div class="form-row">
+                <input
+                  type="text"
+                  name="name"
+                  class="form-input"
+                  placeholder="Your Name"
+                  required
+                  aria-label="Your name"
+                  autocomplete="off"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  id="emailsss"
+                  class="form-input"
+                  placeholder="Your email"
+                  required
+                  aria-label="Your email"
+                  autocomplete="off"
+                />
+              </div>
+
+              <textarea
+                rows="6"
+                name="message"
+                class="form-input"
+                placeholder="Enter your message here..."
+                required
+                style="resize: none"
+                aria-label="Your Message"
+                autocomplete="off"
+              ></textarea>
+
+              <div class="form-button">
+                <button type="submit">Submit Your Message</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="container footer-container">
+        <p>&copy; 2024 | Codes&Bytes | All rights reserved</p>
+      </div>
+    </footer>
+    <script src="{{ url_for('static', filename='js/app.js') }}"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script>
+      const form = document.getElementById('calc-form');
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const response = await fetch('/Calculate_Tax', {
+        method: 'POST',
+        body: formData
+    });
+    const data = await response.json();
+    if (data.result === 'success') {
+        const taxAmount = `<span style="font-weight: bold; color: blue;">${data.message}</span>`;
+        Swal.fire({
+            icon: 'success',
+            title: 'Tax Calculation Successful',
+            html: `${taxAmount}`
+        });
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Tax Calculation Failed',
+            text: data.message
+        });
+    }
+});
+    </script>
+  </body>
 </html>

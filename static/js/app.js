@@ -28,3 +28,21 @@ function handleScroll() {
   }
 }
 window.addEventListener("scroll", handleScroll);
+
+function initTypedText() {
+  const options = {
+    strings: [
+      "Want to Estimate Your Income Tax,",
+      "Deductions &amp; Exemptions ?",
+      "Look No Further!",
+    ],
+    typeSpeed: 70,
+    backSpeed: 50,
+    backDelay: 1000,
+    startDelay: 500,
+    loop: true,
+  };
+  const typed = new Typed("#typed-text", options);
+}
+
+initTypedText();

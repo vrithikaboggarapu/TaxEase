@@ -46,3 +46,26 @@ function initTypedText() {
 }
 
 initTypedText();
+
+document.addEventListener("DOMContentLoaded", function () {
+  const filterButtons = document.querySelectorAll(".filter button");
+  const projectCards = document.querySelectorAll(".project-card");
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const filterValue = button.getAttribute("data-filter");
+      filterProjects(filterValue);
+    });
+  });
+
+  function filterProjects(category) {
+    projectCards.forEach((card) => {
+      const projectCategory = card.getAttribute("data-category");
+      if (category === "all" || projectCategory === category) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  }
+});

@@ -122,3 +122,6 @@ def tax(Annual_Salary, Passive_Income, Age):
             Tax = IT + Surcharge
             return f"The Income Tax that has to be paid by the candidate for the respective Financial Year is {Tax}"
 
+@app.route('/')
+def index():
+    return render_template('index.html', tax_amt=session.pop('tax_amt', None))

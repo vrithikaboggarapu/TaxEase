@@ -1,35 +1,23 @@
 pipeline {
     agent any
+
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                git branch: 'main', url: 'https://github.com/vrithikaboggarapu/TaxEase.git'
             }
         }
+
         stage('Build') {
             steps {
-                bat """
-                if exist out rmdir /s /q out
-                mkdir out
-                echo Installing dependencies...
-                python -m venv venv
-                .\\venv\\Scripts\\pip install -r requirements.txt
-                """
+                sh 'mvn clean install'
             }
         }
+
         stage('Run') {
             steps {
-                bat """
-                echo Running TaxEase application...
-                .\\venv\\Scripts\\python app.py
-                echo Build_OK > artifact.txt
-                """
+                sh 'mvn spring-boot:run'
             }
-        }
-    }
-    post {
-        always {
-            archiveArtifacts artifacts: 'artifact.txt, out/**'
         }
     }
 }

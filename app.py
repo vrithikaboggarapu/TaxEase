@@ -154,3 +154,4 @@ if __name__ == '__main__':
     app.run(debug=True)
     print("Trying web hook")
     print("changes made")
+    print("added trigger")

@@ -1,46 +1,58 @@
 pipeline {
-    agent any
+
+    agent none   // 👈 No global agent — each stage defines where it runs
 
     stages {
 
-        stage('Checkout') {
+        stage('Checkout - Controller') {
+            agent { label 'master' }   // 👈 Runs on Jenkins Controller
             steps {
-                // Pull code from your GitHub repo
+                echo '📥 Checking out source code on controller...'
                 git branch: 'main', url: 'https://github.com/vrithikaboggarapu/TaxEase.git'
+
+                // Stash the workspace so agent can use it later
+                stash includes: '**', name: 'source_code'
             }
         }
 
-        stage('Set up Python') {
+        stage('Set up Python - Agent') {
+            agent { label 'win_agent' }   // 👈 Runs on Windows Agent
             steps {
-                // Verify Python version
-                sh 'python3 --version'
+                echo '🐍 Checking Python version on agent...'
+                // Unstash the source code from controller
+                unstash 'source_code'
+                bat 'python --version'
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Install Dependencies - Agent') {
+            agent { label 'win_agent' }
             steps {
-                // Install all required Python packages
-                sh 'pip3 install -r requirements.txt'
+                echo '📦 Installing dependencies on agent...'
+                unstash 'source_code'
+                bat 'pip install -r requirements.txt'
             }
         }
 
-        stage('Run Flask App') {
+        stage('Run Flask App - Agent') {
+            agent { label 'win_agent' }
             steps {
-                // Run your Flask app (make sure app.py is in your repo root)
-                sh 'python3 app.py &'
+                echo '🚀 Running Flask app on agent...'
+                unstash 'source_code'
+                bat 'start python app.py'
             }
         }
     }
 
     post {
         always {
-            echo 'Pipeline finished.'
+            echo '📋 Pipeline execution finished (Controller + Agent).'
         }
         failure {
-            echo 'Build failed ❌'
+            echo '❌ Build failed.'
         }
         success {
-            echo 'Build succeeded ✅'
+            echo '✅ Build succeeded.'
         }
     }
 }

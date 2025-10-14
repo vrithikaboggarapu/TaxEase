@@ -1,25 +1,24 @@
 pipeline {
 
-    agent none   // 👈 No global agent — each stage defines where it runs
+    agent none   // 👈 No global agent — each stage defines its own
 
     stages {
 
         stage('Checkout - Controller') {
-            agent { label 'master' }   // 👈 Runs on Jenkins Controller
+            agent { label 'built-in' }   // 👈 Runs on Jenkins Controller (built-in node)
             steps {
-                echo '📥 Checking out source code on controller...'
+                echo '📥 Checking out code on Controller (built-in node)...'
                 git branch: 'main', url: 'https://github.com/vrithikaboggarapu/TaxEase.git'
 
-                // Stash the workspace so agent can use it later
+                // Save workspace for next stages on agent
                 stash includes: '**', name: 'source_code'
             }
         }
 
         stage('Set up Python - Agent') {
-            agent { label 'win_agent' }   // 👈 Runs on Windows Agent
+            agent { label 'win_agent' }   // 👈 Runs on Windows Agent node
             steps {
-                echo '🐍 Checking Python version on agent...'
-                // Unstash the source code from controller
+                echo '🐍 Checking Python on Windows Agent...'
                 unstash 'source_code'
                 bat 'python --version'
             }
@@ -28,7 +27,7 @@ pipeline {
         stage('Install Dependencies - Agent') {
             agent { label 'win_agent' }
             steps {
-                echo '📦 Installing dependencies on agent...'
+                echo '📦 Installing dependencies on Windows Agent...'
                 unstash 'source_code'
                 bat 'pip install -r requirements.txt'
             }
@@ -37,7 +36,7 @@ pipeline {
         stage('Run Flask App - Agent') {
             agent { label 'win_agent' }
             steps {
-                echo '🚀 Running Flask app on agent...'
+                echo '🚀 Running Flask App on Windows Agent...'
                 unstash 'source_code'
                 bat 'start python app.py'
             }
@@ -46,7 +45,7 @@ pipeline {
 
     post {
         always {
-            echo '📋 Pipeline execution finished (Controller + Agent).'
+            echo '📋 Pipeline finished (Controller + Agent setup).'
         }
         failure {
             echo '❌ Build failed.'
